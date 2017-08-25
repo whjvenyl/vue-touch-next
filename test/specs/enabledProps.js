@@ -4,6 +4,8 @@ import { expect } from 'chai'
 import Vue from 'vue/dist/vue.common'
 import VueTouch from '../helpers/vue-touch'
 
+Vue.use(VueTouch)
+
 import {
   createFromTemplate,
   isEnabled,
@@ -13,9 +15,7 @@ import {
 } from '../helpers'
 
 describe('VueTouch.enabledProps', () => {
-  beforeEach(function () {
-    Vue.use(VueTouch)
-  })
+  beforeEach(function () {})
 
   it('prop is true by default & events are enabled', () => {
     const vt = createFromTemplate(`

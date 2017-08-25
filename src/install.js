@@ -10,7 +10,11 @@ let installed = false
 // *********
 
 vueTouch.install = function install (Vue, opts = {}) {
-  if (installed) { return }
+  console.log('VueTouch: trying to install')
+  if (installed) {
+    console.log('-- already installed')
+    return
+  }
   installed = true
 
   const name = opts.name || 'v-touch'
