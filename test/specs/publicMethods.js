@@ -44,4 +44,24 @@ describe('VueTouch.publicMethods', () => {
 
     expect(enabled).to.be.true
   })
+
+  it('enableAll / disableAll', () => {
+    expect(allEnabled(vt)).to.be.true
+
+    vt.disableAll()
+
+    expect(allDisabled(vt)).to.be.true
+
+    vt.enableAll()
+
+    expect(allEnabled(vt)).to.be.true
+  })
+
+  it('isEnabled', () => {
+    expect(vt.isEnabled('tap')).to.be.true
+
+    vt.disable('tap')
+
+    expect(vt.isEnabled('tap')).to.be.false
+  })
 })
