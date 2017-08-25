@@ -4,14 +4,16 @@ import { expect } from 'chai'
 import Vue from 'vue/dist/vue.common'
 import VueTouch from '../helpers/vue-touch'
 
-Vue.use(VueTouch)
-
 import {
   createFromTemplate,
   hasRecognizer, hasHandler
 } from '../helpers'
 
 describe('VueTouch.builtinEvents', () => {
+  beforeEach(() => {
+    Vue.use(VueTouch)
+  })
+
   it('Add tap recognizer for tap event', () => {
     const vt = createFromTemplate(`
     <v-touch @tap="cb"></v-touch>

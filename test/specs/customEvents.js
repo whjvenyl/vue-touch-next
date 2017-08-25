@@ -4,17 +4,19 @@ import { expect } from 'chai'
 import Vue from 'vue/dist/vue.common'
 import VueTouch from '../helpers/vue-touch'
 
-VueTouch.registerCustomEvent('doubletap', {
-  type: 'tap',
-  taps: 2
-})
-Vue.use(VueTouch)
-
 import {
   createFromTemplate
 } from '../helpers'
 
 describe('VueTouch.customEvents', () => {
+  beforeEach(() => {
+    VueTouch.registerCustomEvent('doubletap', {
+      type: 'tap',
+      taps: 2
+    })
+    Vue.use(VueTouch)
+  })
+
   it('custom Event `doubletap` gets triggered', () => {
     const vt = createFromTemplate(`
     <v-touch

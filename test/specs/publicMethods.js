@@ -4,8 +4,6 @@ import { expect } from 'chai'
 import Vue from 'vue/dist/vue.common'
 import VueTouch from '../helpers/vue-touch'
 
-Vue.use(VueTouch)
-
 import {
   createFromTemplate,
   isEnabled, isDisabled,
@@ -16,6 +14,8 @@ describe('VueTouch.publicMethods', () => {
   let vt
 
   beforeEach(function () {
+    Vue.use(VueTouch)
+
     vt = createFromTemplate(`
     <v-touch
     @tap="cb"

@@ -30,6 +30,11 @@ module.exports = merge(base, {
           resolve(__dirname, '../node_modules/@material'),
           resolve(__dirname, '../src')
         ]
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+        exclude: resolve(__dirname, '../node_modules')
       }
     ]
   },

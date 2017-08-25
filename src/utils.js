@@ -26,7 +26,9 @@ export function assign (target, ...sources) {
 export function createProp () {
   return {
     type: Object,
-    default: function () { return {} }
+    default: function () {
+      return {}
+    }
   }
 }
 
@@ -36,20 +38,20 @@ export function capitalize (str) {
 
 /**
  * Directions that VueTouch understands.
- * Will be tanslated to Hammer-style directions by guardDirections()
+ * Will be translated to Hammer-style directions by guardDirections()
  * @type {Array}
  */
 export const directions = ['up', 'down', 'left', 'right', 'horizontal', 'vertical', 'all']
 
 /**
  * Translates VueTouch direction names into Hammer Direction numbers.
- * @param  {Objects} options Hammer Options
+ * @param  {Object} options Hammer Options
  * @return {Object}         [Hammer Options]
  */
 export function guardDirections (options) {
-  var dir = options.direction
+  const dir = options.direction
   if (typeof dir === 'string') {
-    var hammerDirection = 'DIRECTION_' + dir.toUpperCase()
+    const hammerDirection = 'DIRECTION_' + dir.toUpperCase()
     if (directions.indexOf(dir) > -1 && Hammer.hasOwnProperty(hammerDirection)) {
       options.direction = Hammer[hammerDirection]
     } else {
@@ -60,25 +62,22 @@ export function guardDirections (options) {
 }
 
 /**
- * This pobject will contain global options for recognizers
+ * This object will contain global options for recognizers
  * see index.js -> vueTouch.config
  * @type {Object}
  */
-export const config = {
-
-}
+export const config = {}
 
 /**
  * This object will contain recognizer options for custom events.
  * see index.js -> registerCustomEvent
  * @type {Object}
  */
-export const customEvents = {
-
-}
+export const customEvents = {}
 
 /**
  * Names of all the builtin gestures of Hammer
+ *
  * @type {Array}
  */
 export const gestures = [

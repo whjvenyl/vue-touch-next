@@ -5,10 +5,12 @@ import Vue from 'vue/dist/vue.common'
 import VueTouch from '../helpers/vue-touch'
 import Hammer from 'hammerjs'
 
-Vue.use(VueTouch, { hammer: Hammer })
-
 describe('VueTouch.registerCustomEvent', () => {
   const warn = sinon.stub(console, 'warn')
+
+  beforeEach(() => {
+    Vue.use(VueTouch, { hammer: Hammer })
+  })
 
   it('registerCustomEvent works before Vue.use(), errors after', () => {
     VueTouch.registerCustomEvent('doubletap', { taps: 2 })

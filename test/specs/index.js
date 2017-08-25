@@ -5,11 +5,13 @@ import { expect } from 'chai'
 import Vue from 'vue/dist/vue.common'
 import VueTouch from '../helpers/vue-touch'
 
-Vue.use(VueTouch)
-
 import { createFromTemplate, createInstanceFromTemplate } from '../helpers/index.js'
 
 describe('VueTouch.index', () => {
+  beforeEach(() => {
+    Vue.use(VueTouch)
+  })
+
   it('Rendering without props renders as div', () => {
     const i = createInstanceFromTemplate(`
       <v-touch></v-touch>

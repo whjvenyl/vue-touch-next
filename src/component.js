@@ -1,4 +1,5 @@
 import Hammer from 'hammerjs'
+import propagating from 'propagating-hammerjs'
 
 import {
   createProp,
@@ -11,6 +12,8 @@ import {
   config,
   customEvents
 } from './utils'
+
+const HammerNew = propagating(Hammer)
 
 export default {
   name: 'vue-touch-next',
@@ -32,7 +35,7 @@ export default {
 
   mounted () {
     if (!this.$isServer) {
-      this.hammer = new Hammer.Manager(this.$el, this.options)
+      this.hammer = new HammerNew.Manager(this.$el, this.options)
       this.recognizers = {} // not reactive
       this.setupBuiltinRecognizers()
       this.setupCustomRecognizers()
@@ -96,8 +99,7 @@ export default {
     },
 
     /**
-     * Registers a new Recognizer with the manager and saves it on the component
-     * instance
+     * Registers a new Recognizer with the manager and saves it on the component instance
      * @param {String} gesture     See utils.js -> gestures
      * @param {Object} options     Hammer options
      * @param {String} mainGesture if gesture is a custom event name, mapping to utils.js -> gestures
@@ -105,7 +107,7 @@ export default {
     addRecognizer: function addRecognizer (gesture, options, { mainGesture } = {}) {
       // create recognizer, e.g. new Hammer['Swipe'](options)
       if (!this.recognizers[gesture]) {
-        const recognizer = new Hammer[capitalize(mainGesture || gesture)](guardDirections(options))
+        const recognizer = new HammerNew[capitalize(mainGesture || gesture)](guardDirections(options))
         this.recognizers[gesture] = recognizer
         this.hammer.add(recognizer)
         recognizer.recognizeWith(this.hammer.recognizers)
@@ -120,7 +122,7 @@ export default {
 
     /**
      * Called when the `enabled` prop changes, and during mounted()
-     * It enables/disables values according to the value of the `emabled` prop
+     * It enables/disables values according to the value of the `enabled` prop
      * @param  {Boolean|Object} newVal If an object: { recognizer: true|false }
      * @param  {Boolean|Object} oldVal The previous value
      * @return {undefined}
@@ -145,31 +147,31 @@ export default {
       }
     },
 
-    enable (r) {
-      const recognizer = this.recognizers[r]
+    enable (gesture) {
+      const recognizer = this.recognizers[gesture]
       if (!recognizer.options.enable) {
         recognizer.set({ enable: true })
       }
     },
-    disable (r) {
-      const recognizer = this.recognizers[r]
+    disable (gesture) {
+      const recognizer = this.recognizers[gesture]
       if (recognizer.options.enable) {
         recognizer.set({ enable: false })
       }
     },
-    toggle (r) {
-      const recognizer = this.recognizers[r]
+    toggle (gesture) {
+      const recognizer = this.recognizers[gesture]
       if (recognizer) {
         recognizer.options.enable
-          ? this.disable(r)
-          : this.enable(r)
+          ? this.disable(gesture)
+          : this.enable(gesture)
       }
     },
 
-    enableAll (r) {
+    enableAll () {
       this.toggleAll({ enable: true })
     },
-    disableAll (r) {
+    disableAll () {
       this.toggleAll({ enable: false })
     },
     toggleAll ({ enable }) {
@@ -182,8 +184,8 @@ export default {
       }
     },
 
-    isEnabled (r) {
-      return this.recognizers[r] && this.recognizers[r].options.enable
+    isEnabled (gesture) {
+      return this.recognizers[gesture] && this.recognizers[gesture].options.enable
     }
   },
 
