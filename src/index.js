@@ -1,15 +1,16 @@
 /* global define */
 
-import vueTouch from './install.js'
+import VueTouch from './install.js'
 
 const version = '__VERSION__'
-vueTouch.version = version
+VueTouch.version = version
 
 // Install by default if using the script tag
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(vueTouch)
+  window.Vue.use(VueTouch)
+  window.VueTouch = VueTouch
 } else if (typeof exorts === 'object') {
-  module.exports = vueTouch
+  module.exports = VueTouch
 } else if (typeof define === 'function' && define.amd) {
-  define([], function () { return vueTouch })
+  define([], function () { return VueTouch })
 }

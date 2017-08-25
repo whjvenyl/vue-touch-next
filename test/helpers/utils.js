@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.js'
+import Vue from 'vue/dist/vue.common.js'
 import Test from './Test.vue'
 
 Vue.config.productionTip = false

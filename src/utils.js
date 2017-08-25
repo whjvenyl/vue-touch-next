@@ -6,7 +6,7 @@ import Hammer from 'hammerjs' // used by guardDirections
  * @param  {Object} sources Any type of object
  * @return {Object}         Merged Object
  */
-export function assign(target, ...sources) {
+export function assign (target, ...sources) {
   for (let i = 0; i < sources.length; i++) {
     const source = sources[i]
     const keys = Object.keys(source)
@@ -23,10 +23,10 @@ export function assign(target, ...sources) {
  * *-options props.
  * @return {[type]} [description]
  */
-export function createProp() {
+export function createProp () {
   return {
     type: Object,
-    default: function() { return {} }
+    default: function () { return {} }
   }
 }
 
@@ -82,11 +82,11 @@ export const customEvents = {
  * @type {Array}
  */
 export const gestures = [
-  'pan','panstart','panmove','panend','pancancel','panleft','panright','panup','pandown',
-  'pinch','pinchstart','pinchmove','pinchend','pinchcancel','pinchin','pinchout',
-  'press','pressup',
-  'rotate','rotatestart','rotatemove','rotateend','rotatecancel',
-  'swipe','swipeleft','swiperight','swipeup','swipedown',
+  'pan', 'panstart', 'panmove', 'panend', 'pancancel', 'panleft', 'panright', 'panup', 'pandown',
+  'pinch', 'pinchstart', 'pinchmove', 'pinchend', 'pinchcancel', 'pinchin', 'pinchout',
+  'press', 'pressup',
+  'rotate', 'rotatestart', 'rotatemove', 'rotateend', 'rotatecancel',
+  'swipe', 'swipeleft', 'swiperight', 'swipeup', 'swipedown',
   'tap'
 ]
 
