@@ -1,30 +1,16 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const base = require('./webpack.config.base')
 const { resolve, join } = require('path')
-const { existsSync } = require('fs')
 const {
-  dllName,
-  logError,
-  red,
   vueLoaders
 } = require('./utils')
 
 const rootDir = resolve(__dirname, '../test')
 const buildPath = resolve(rootDir, 'dist')
-
-if (!existsSync(join(buildPath, dllName) + '.dll.js')) {
-  logError(red('The DLL manifest is missing. Please run `npm run build:dll` (Quit this with `q`)'))
-  process.exit(1)
-}
-
-const dllManifest = require(
-  join(buildPath, dllName) + '.json'
-)
 
 module.exports = merge(base, {
   entry: {
@@ -48,17 +34,8 @@ module.exports = merge(base, {
     ]
   },
   plugins: [
-    new webpack.DllReferencePlugin({
-      context: join(__dirname, '..'),
-      manifest: dllManifest
-    }),
     new HtmlWebpackPlugin({
       chunkSortMode: 'dependency'
-    }),
-    new AddAssetHtmlPlugin({
-      filepath: require.resolve(
-        join(buildPath, dllName) + '.dll.js'
-      )
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

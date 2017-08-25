@@ -8,19 +8,6 @@ let installed = false
 
 // Plugin API
 // *********
-
-vueTouch.install = function install (Vue, opts = {}) {
-  console.log('VueTouch: trying to install')
-  if (installed) {
-    console.log('-- already installed')
-    return
-  }
-  installed = true
-
-  const name = opts.name || 'v-touch'
-  Vue.component(name, assign(component, { name }))
-}
-
 vueTouch.registerCustomEvent = function registerCustomEvent (event, options = {}) {
   if (installed) {
     console.warn(`
@@ -37,8 +24,14 @@ vueTouch.registerCustomEvent = function registerCustomEvent (event, options = {}
   }
 }
 
-vueTouch.component = component
+vueTouch.install = function install (Vue, opts = {}) {
+  if (installed) return
+  installed = true
 
-export let Vue
+  const name = opts.name || 'v-touch'
+  Vue.component(name, assign(component, { name }))
+}
+
+vueTouch.component = component
 
 export default vueTouch

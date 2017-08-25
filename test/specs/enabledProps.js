@@ -10,13 +10,10 @@ import {
   createFromTemplate,
   isEnabled,
   isDisabled,
-  allEnabled,
   allDisabled
 } from '../helpers'
 
 describe('VueTouch.enabledProps', () => {
-  beforeEach(function () {})
-
   it('prop is true by default & events are enabled', () => {
     const vt = createFromTemplate(`
       <v-touch

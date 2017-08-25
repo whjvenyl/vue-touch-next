@@ -8,14 +8,10 @@ Vue.use(VueTouch)
 
 import {
   createFromTemplate,
-  hasRecognizer, hasHandler,
-  isEnabled, isDisabled,
-  allEnabled, allDisabled
+  hasRecognizer, hasHandler
 } from '../helpers'
 
 describe('VueTouch.builtinEvents', () => {
-  beforeEach(function () {})
-
   it('Add tap recognizer for tap event', () => {
     const vt = createFromTemplate(`
     <v-touch @tap="cb"></v-touch>

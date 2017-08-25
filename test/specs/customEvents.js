@@ -11,20 +11,16 @@ VueTouch.registerCustomEvent('doubletap', {
 Vue.use(VueTouch)
 
 import {
-  createFromTemplate,
-  hasRecognizer
+  createFromTemplate
 } from '../helpers'
 
 describe('VueTouch.customEvents', () => {
-  beforeEach(function () {})
-
   it('custom Event `doubletap` gets triggered', () => {
     const vt = createFromTemplate(`
     <v-touch
       v-on:doubletap="cb"
     />
     `)
-
     expect(vt.recognizers.doubletap !== undefined).to.be.true
   })
 

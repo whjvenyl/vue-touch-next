@@ -10,8 +10,6 @@ Vue.use(VueTouch)
 import { createFromTemplate, createInstanceFromTemplate } from '../helpers/index.js'
 
 describe('VueTouch.index', () => {
-  beforeEach(function () {})
-
   it('Rendering without props renders as div', () => {
     const i = createInstanceFromTemplate(`
       <v-touch></v-touch>

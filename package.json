@@ -15,7 +15,6 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "node build/build.js",
-    "build:dll": "webpack --progress --config build/webpack.config.dll.js",
     "lint": "yon run lint:js && yon run lint:css",
     "lint:js": "eslint --ext js --ext jsx --ext vue src test/**/*.spec.js test/*.js build",
     "lint:js:fix": "yon run lint:js -- --fix",
@@ -110,23 +109,6 @@
   "dependencies": {
     "hammerjs": "^2.0.8",
     "propagating-hammerjs": "^1.4.6"
-  },
-  "dllPlugin": {
-    "name": "vuePluginTemplateDeps",
-    "include": [
-      "mocha/mocha.js",
-      "style-loader!css-loader!mocha-css",
-      "html-entities",
-      "vue/dist/vue.js",
-      "chai",
-      "core-js/library",
-      "url",
-      "sockjs-client",
-      "vue-style-loader/lib/addStylesClient.js",
-      "events",
-      "ansi-html",
-      "style-loader/addStyles.js"
-    ]
   },
   "license": {
     "type": "MIT",
