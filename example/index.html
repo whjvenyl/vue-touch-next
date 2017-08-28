@@ -17,8 +17,8 @@
         @doubletap="test($event, 'parent:double')"
         :doubletap-options="{ intervall: 400 }"
         :recognize-with="{ doubletap: ['tap'] }"
-        :require-failure="{ tap: ['doubletap'] }"
         >
+        <!--:require-failure="{ tap: ['doubletap'] }"-->
         parent {{event.type}}
         <v-touch id="child"
           @tap="test($event, 'child:single')"

@@ -22,6 +22,8 @@ const app = new Vue({
       delete e.target
       this.event = e
       console.log(e, name)
+
+      e.stopPropagation()
     },
     testdouble: function (e) {
       console.log('doubletap')
