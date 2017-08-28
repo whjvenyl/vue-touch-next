@@ -33,6 +33,7 @@ function rollupBundle ({ env }) {
       cjs(),
       vue({
         compileTemplate: true,
+        /*
         css (styles, stylesNodes) {
           // Only generate the styles once
           if (env['process.env.NODE_ENV'] === '"production"') {
@@ -48,9 +49,9 @@ function rollupBundle ({ env }) {
               write(`dist/${name}.min.css`, new CleanCSS().minify(result).styles)
             }).catch(logError)
           }
-        }
+        }*/
       }),
-      jsx({ factory: 'h' }),
+      // jsx({ factory: 'h' }),
       replace(Object.assign({
         __VERSION__: version
       }, env)),
