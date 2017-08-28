@@ -25,6 +25,7 @@ const {
 function rollupBundle ({ env }) {
   return rollup({
     entry: 'src/index.js',
+    /* external: ['hammerjs'],*/
     plugins: [
       node({
         extensions: ['.js', '.jsx', '.vue']
@@ -54,6 +55,7 @@ function rollupBundle ({ env }) {
         __VERSION__: version
       }, env)),
       buble({
+        transforms: { dangerousForOf: true },
         objectAssign: 'Object.assign'
       })
     ]
@@ -64,6 +66,9 @@ const bundleOptions = {
   banner,
   exports: 'named',
   format: 'umd',
+  globals: {
+    hammerjs: 'Hammer'
+  },
   moduleName
 }
 

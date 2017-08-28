@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 
 import Vue from 'vue/dist/vue.common'
-import VueTouch from '../helpers/vue-touch'
+import VueTouch, { registerCustomEvent } from '../helpers/vue-touch'
 import Hammer from 'hammerjs'
 
 describe('VueTouch.registerCustomEvent', () => {
@@ -13,7 +13,7 @@ describe('VueTouch.registerCustomEvent', () => {
   })
 
   it('registerCustomEvent works before Vue.use(), errors after', () => {
-    VueTouch.registerCustomEvent('doubletap', { taps: 2 })
+    registerCustomEvent('doubletap', { taps: 2 })
     // console.log(log.getCall(0).args[0])
     const pattern = /\[vue\-touch\]: Custom Event/
     expect(pattern.test(warn.getCall(0).args[0])).to.be.true

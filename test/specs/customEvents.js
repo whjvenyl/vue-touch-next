@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 
 import Vue from 'vue/dist/vue.common'
-import VueTouch from '../helpers/vue-touch'
+import VueTouch, { registerCustomEvent } from '../helpers/vue-touch'
 
 import {
   createFromTemplate
@@ -10,7 +10,7 @@ import {
 
 describe('VueTouch.customEvents', () => {
   beforeEach(() => {
-    VueTouch.registerCustomEvent('doubletap', {
+    registerCustomEvent('doubletap', {
       type: 'tap',
       taps: 2
     })

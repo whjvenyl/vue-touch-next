@@ -4,56 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>vue-touch Test Area</title>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="require-loader.js"></script>
-
     <style>
       div     {border: 1px solid black;}
       #parent {width: 400px; height: 400px; background: lightgreen;}
       #child  {width: 200px; height: 200px; background: yellow; margin: 10px;}
     </style>
-
   </head>
   <body>
     <div id="app">
-      <v-touch id="parent" @tap="test($event, 'parent:single')" @doubletap="test($event, 'double')">
-        parent
-        <v-touch id="child" @tap="test($event, 'child:single')">
-          child
+      <v-touch id="parent"
+        @tap="test($event, 'parent:single')"
+        @doubletap="test($event, 'parent:double')"
+        :doubletap-options="{ intervall: 400 }"
+        :recognize-with="{ doubletap: ['tap'] }"
+        :require-failure="{ tap: ['doubletap'] }"
+        >
+        parent {{event.type}}
+        <v-touch id="child"
+          @tap="test($event, 'child:single')"
+          @doubletap="test($event, 'child:double')"
+          >
+          child {{event.type}}
         </v-touch>
       </v-touch>
     </div>
-
     <script>
-      var VueTouch = require('vue-touch-next.min.js');
-      Vue.use(VueTouch);
-
-      // example registering a custom doubletap event.
-      // the `type` indicates the base recognizer to use from Hammer
-      // all other options are Hammer recognizer options.
-      VueTouch.registerCustomEvent('doubletap', {
-        type: 'tap',
-        taps: 2
-      })
-
-      var app = new Vue({
-        el: '#app',
-        data: {
-          message: 'Hello Vue!',
-          event: {}
-        },
-        methods: {
-          test: function (e, name = '') {
-            this.event = e
-            console.log(e, name)
-            e.stopPropagation()
-          },
-          testdouble: function(e) {
-            console.log('doubletap')
-            this.test(e)
-          }
-        }
-      });
+      window.process = { env: { NODE_ENV: 'development' } }
+      window.module = {};
     </script>
+    <script type="module" src="example.js"></script>
   </body>
 </html>

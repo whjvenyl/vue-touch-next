@@ -1,22 +1,4 @@
-import Hammer from 'hammerjs' // used by guardDirections
-
-/**
- * Tiny Object.assign replacement
- * @param  {Object} target  Any type of object
- * @param  {Object} sources Any type of object
- * @return {Object}         Merged Object
- */
-export function assign (target, ...sources) {
-  for (let i = 0; i < sources.length; i++) {
-    const source = sources[i]
-    const keys = Object.keys(source)
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i]
-      target[key] = source[key]
-    }
-  }
-  return target
-}
+import Hammer from 'hammerjs'
 
 /**
  * Small helper method to generate prop options for all the
@@ -69,13 +51,6 @@ export function guardDirections (options) {
 export const config = {}
 
 /**
- * This object will contain recognizer options for custom events.
- * see index.js -> registerCustomEvent
- * @type {Object}
- */
-export const customEvents = {}
-
-/**
  * Names of all the builtin gestures of Hammer
  *
  * @type {Array}
@@ -124,3 +99,7 @@ export const gestureMap = {
   swipedown: 'swipe',
   tap: 'tap'
 }
+
+export const normalizeGesture = name => gestureMap[name]
+
+export const objectHasArrayValues = value => typeof value === 'object' && Object.values(value).every(any => Array.isArray(any))
