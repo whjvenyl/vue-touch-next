@@ -5,7 +5,6 @@ import Component from './component'
 import { customEvents, register } from './events'
 
 function plugin (Vue, options = {}) {
-  console.log('installing vue')
   if (plugin.installed) return
   plugin.installed = true
   Component.config = plugin.config
@@ -25,7 +24,6 @@ export {
   version
 }
 export const registerCustomEvent = function registerCustomEvent (event, options) {
-  console.log('trying to register event', event)
   if (plugin.installed) {
     console.warn(`
       [vue-touch]: Custom Event '${event}' couldn't be added to vue-touch.
