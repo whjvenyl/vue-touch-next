@@ -3217,7 +3217,6 @@ var version = '0.0.0';
 function plugin (Vue, options) {
   if ( options === void 0 ) options = {};
 
-  console.log('installing vue');
   if (plugin.installed) { return }
   plugin.installed = true;
   Component.config = plugin.config;
@@ -3231,7 +3230,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 var registerCustomEvent = function registerCustomEvent (event, options) {
-  console.log('trying to register event', event);
   if (plugin.installed) {
     console.warn(("\n      [vue-touch]: Custom Event '" + event + "' couldn't be added to vue-touch.\n      Custom Events have to be registered before installing the plugin.\n      "));
     return
